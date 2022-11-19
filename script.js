@@ -5,12 +5,13 @@ function getRandomRGB() {
     return `${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}`;
 }
 
-function runSpanListener(sizeForumla) {
+function runSpanListener() {
     const spans =  document.querySelectorAll('span');
     spans.forEach(span => {
         span.addEventListener('mouseover', () => {
             console.log(span.style);
-            span.style = `background-color:rgb(${getRandomRGB()});height:${sizeForumla}px; width:${sizeForumla}px`;
+            span.style.backgroundColor = `rgb(${getRandomRGB()})`;
+            console.log(span.style)
         })
     })
 }
@@ -32,11 +33,12 @@ function drawGrid(num) {
         // create spans
         for (let i = 0; i < num; ++i) {
             const span = document.createElement('span');
-            span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
+            span.style.height = `${sizeForumla}px`;
+            span.style.width = `${sizeForumla}px`;
             innerContainer.appendChild(span);
         }
     }
-    runSpanListener(sizeForumla);
+    runSpanListener();
 }
         
 
