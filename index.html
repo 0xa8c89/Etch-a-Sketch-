@@ -9,25 +9,30 @@
     <script src="script.js" defer></script> -->
     <style>
         * {
+            /* border: 1px solid black; */
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         .container {
-            margin: auto;
+            box-sizing: content-box;
+            border: 5px solid gray;
             margin-top: 5em;
-            width: 960px;
-            height: auto;
+            width: 500px;
+            margin: 5em auto;
         }
         .inner-container {
             /* border: 1px solid black; */
-            font-size: 1.5em;
             display: flex;
             justify-content: center;
+            width: 500px;
         }
         span {
+            /* border: 1px solid black; */
             display: block;
-            border: 1px solid black;
+            height:auto;
             flex: 0 0 auto;
+            /* background-color: aqua; */
         }
     </style>
 </head>
@@ -35,11 +40,13 @@
     <script>
         const body = document.querySelector('body');
         
-        let num = 41; // testing
+        let num = 10; // testing
         if (num > 100)
             num = 100;
+        
+        const sizeForumla = 500/num;
 
-        // create main container
+        // create container
         const container = document.createElement("div")
         container.classList.add('container');
         body.appendChild(container);
@@ -54,7 +61,7 @@
             for (let i = 0; i < num; ++i) {
                 const span = document.createElement('span');
                 span.classList.add('span');
-                span.style = `height:${960/num}px; width:${960/num}px`
+                span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
                 // span.textContent = 1;
                 innerContainer.appendChild(span);
             }
@@ -63,7 +70,8 @@
         const spans =  document.querySelectorAll('span');
         spans.forEach(span => {
             span.addEventListener('mouseover', () => {
-                span.style = `background-color:black`;
+                console.log(span.style);
+                span.style = `background-color:black;height:${sizeForumla}px; width:${sizeForumla}px`;
             })
         })
 
