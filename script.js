@@ -19,9 +19,9 @@ function runSpanListener() {
             let newRgbString = 'rgb('
             for (let i = 0; i < newRGB.length; ++i) {
                 newRGB[i] = parseInt(newRGB[i]);
-                newRGB[i] -= Math.floor(newRGB[i]/10);
+                newRGB[i] -= newRGB[i]/10;
                 // console.log(newRGB[i]);
-                newRgbString += newRGB[i];
+                newRgbString += Math.floor(newRGB[i]);
                 if (!(i == 2))
                     newRgbString += ',';
             }
