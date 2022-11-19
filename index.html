@@ -5,14 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css"></style>
-    <script src="script.js" defer></script>
+    <!-- <link rel="stylesheet" href="styles.css"></style>
+    <script src="script.js" defer></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: auto;
+            margin-top: 5em;
+            width: 960px;
+            height: auto;
+        }
+        .inner-container {
+            /* border: 1px solid black; */
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+        }
+        span {
+            display: block;
+            border: 1px solid black;
+            flex: 0 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <button>Press me for an exciting POPUP!!!</button>
-    <!--
-        TO DO
-        FULLY REWIRTE THE CODE!
-    -->
+    <script>
+        const body = document.querySelector('body');
+        
+        let num = 41; // testing
+        if (num > 100)
+            num = 100;
+
+        // create main container
+        const container = document.createElement("div")
+        container.classList.add('container');
+        body.appendChild(container);
+
+        // create inner container
+        for (let i = 0; i < num; ++i) {
+            const innerContainer = document.createElement('div')
+            innerContainer.classList.add('inner-container');
+            container.appendChild(innerContainer);
+            
+            // create spans
+            for (let i = 0; i < num; ++i) {
+                const span = document.createElement('span');
+                span.classList.add('span');
+                span.style = `height:${960/num}px; width:${960/num}px`
+                // span.textContent = 1;
+                innerContainer.appendChild(span);
+            }
+        }
+
+        const spans =  document.querySelectorAll('span');
+        spans.forEach(span => {
+            span.addEventListener('mouseover', () => {
+                span.style = `background-color:black`;
+            })
+        })
+
+
+    </script>
 </body>
 </html>

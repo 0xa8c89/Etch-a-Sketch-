@@ -41,4 +41,4 @@ button.addEventListener("click", () => {
 
     drawGrid(size);
     runEventListener();
-})
+});
