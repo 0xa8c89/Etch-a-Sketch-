@@ -1,44 +1,59 @@
-const body = document.querySelector("body");
+const body = document.querySelector('body');
+drawGrid(16);
 
-function runEventListener() {
-    const spans = document.querySelectorAll("span");
+function getRandomRGB() {
+    return `${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}`;
+}
+
+function runSpanListener(sizeForumla) {
+    const spans =  document.querySelectorAll('span');
     spans.forEach(span => {
-        const randomColor = `rgb(${getRandomRGB()},${getRandomRGB()},${getRandomRGB()})`;
         span.addEventListener('mouseover', () => {
-        span.style = `background-color:${randomColor}`;
-        });
-    });
+            console.log(span.style);
+            span.style = `background-color:rgb(${getRandomRGB()});height:${sizeForumla}px; width:${sizeForumla}px`;
+        })
+    })
 }
 
 function drawGrid(num) {
-    const container = document.createElement("div");
+    let sizeForumla = 500/num;
+
+    // create container
+    const container = document.createElement("div")
     container.classList.add('container');
     body.appendChild(container);
 
+    // create inner container
     for (let i = 0; i < num; ++i) {
-        const div = document.createElement("div");
-        container.appendChild(div);
+        const innerContainer = document.createElement('div')
+        innerContainer.classList.add('inner-container');
+        container.appendChild(innerContainer);
+                
+        // create spans
         for (let i = 0; i < num; ++i) {
-            const span = document.createElement("span");
-            div.appendChild(span);
+            const span = document.createElement('span');
+            span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
+            innerContainer.appendChild(span);
         }
     }
+    runSpanListener(sizeForumla);
 }
+        
 
-function getRandomRGB() {
-    return Math.floor(Math.random() * 255 + 1);
-}
-
-const button = document.querySelector("button");
-button.addEventListener("click", () => {
-    let size = +prompt("Enter ammount of squares per side: ");
-    while (size > 100 || size === NaN) {
-        size = +prompt("Grid too big, enter a number no bigger than 100");
+const button = document.querySelector('button')
+button.addEventListener('click', () => {
+    size = prompt("Enter amount of squares per side.");
+    while (isNaN(size)) {
+        size = prompt("Bad input. Enter amount of squares per side.");
     }
-    if (document.querySelector(".container")) {
-        body.removeChild(document.querySelector(".container"));
+    if (size !== null) {
+        if (size > 100) {
+            size = 100;
+        }
+        console.log(size);
+        
+        if (document.querySelector('.container'))
+            body.removeChild(document.querySelector('.container'));
+        drawGrid(size);
     }
-
-    drawGrid(size);
-    runEventListener();
-});
+})

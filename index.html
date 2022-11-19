@@ -5,110 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="styles.css"></style>
-    <script src="script.js" defer></script> -->
-    <style>
-        * {
-            /* border: 1px solid black; */
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .container {
-            box-sizing: content-box;
-            border: 5px solid gray;
-            width: 500px;
-            margin: 2em auto;
-        }
-        .inner-container {
-            /* border: 1px solid black; */
-            display: flex;
-            justify-content: center;
-            width: 500px;
-        }
-        span {
-            /* border: 1px solid black; */
-            display: block;
-            height:auto;
-            flex: 0 0 auto;
-            /* background-color: aqua; */
-        }
-        button {
-            display: block;
-            margin: 2em auto;
-            font-family: 'Times New Roman', Times, serif;
-            padding: .5em;
-            font-weight: bold;
-            background: linear-gradient(to top, gray, white);
-            border-radius: 8px;
-            font-size: 1em;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"></style>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <button>Click Me!</button>
     <p></p>
-    <script>
-        const body = document.querySelector('body');
-        drawGrid(16);
-
-        function getRandomRGB() {
-            return `${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}`;
-        }
-
-        function runSpanListener(sizeForumla) {
-            const spans =  document.querySelectorAll('span');
-            spans.forEach(span => {
-                span.addEventListener('mouseover', () => {
-                    console.log(span.style);
-                    span.style = `background-color:rgb(${getRandomRGB()});height:${sizeForumla}px; width:${sizeForumla}px`;
-                })
-            })
-        }
-
-        function drawGrid(num) {
-            let sizeForumla = 500/num;
-
-            // create container
-            const container = document.createElement("div")
-            container.classList.add('container');
-            body.appendChild(container);
-
-            // create inner container
-            for (let i = 0; i < num; ++i) {
-                const innerContainer = document.createElement('div')
-                innerContainer.classList.add('inner-container');
-                container.appendChild(innerContainer);
-                
-                // create spans
-                for (let i = 0; i < num; ++i) {
-                    const span = document.createElement('span');
-                    span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
-                    innerContainer.appendChild(span);
-                }
-            }
-            runSpanListener(sizeForumla);
-        }
-        
-
-        const button = document.querySelector('button')
-        button.addEventListener('click', () => {
-            size = prompt("Enter amount of squares per side.");
-            while (isNaN(size)) {
-                size = prompt("Bad input. Enter amount of squares per side.");
-            }
-            if (size !== null) {
-                if (size > 100) {
-                    size = 100;
-                }
-                console.log(size);
-                
-                if (document.querySelector('.container'))
-                    body.removeChild(document.querySelector('.container'));
-                drawGrid(size);
-            }
-        })
-
-    </script>
 </body>
 </html>
