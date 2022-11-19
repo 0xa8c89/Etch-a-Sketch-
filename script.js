@@ -10,7 +10,23 @@ function runSpanListener() {
     spans.forEach(span => {
         span.addEventListener('mouseover', () => {
             console.log(span.style);
-            span.style.backgroundColor = `rgb(${getRandomRGB()})`;
+            if (!(span.style.backgroundColor.startsWith('rgb'))) {
+                span.style.backgroundColor = `rgb(${getRandomRGB()})`;
+                return
+            }
+            const oldRB = span.style.backgroundColor.split(',');
+            newRGB = [oldRB[0].replace('rgb(', ''), oldRB[1], oldRB[2].replace(')', '')];
+            let newRgbString = 'rgb('
+            for (let i = 0; i < newRGB.length; ++i) {
+                newRGB[i] = parseInt(newRGB[i]);
+                newRGB[i] -= Math.floor(newRGB[i]/10);
+                // console.log(newRGB[i]);
+                newRgbString += newRGB[i];
+                if (!(i == 2))
+                    newRgbString += ',';
+            }
+            newRgbString += ')';
+            span.style.backgroundColor = newRgbString;
         })
     })
 }
