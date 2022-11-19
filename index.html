@@ -41,6 +41,7 @@
             font-weight: bold;
             background: linear-gradient(to top, gray, white);
             border-radius: 8px;
+            font-size: 1em;
         }
     </style>
 </head>
@@ -49,45 +50,60 @@
     <p></p>
     <script>
         const body = document.querySelector('body');
-        
-        const button = document.querySelector('button');
-        button.addEventListener('click', () => {
-            let num = prompt("Enter a grid size no bigger than 100(x100)");
-            if (num > 100)
-                num = 100;
-        })
-        
-        const sizeForumla = 500/num;
+        drawGrid(16);
 
-        // create container
-        const container = document.createElement("div")
-        container.classList.add('container');
-        body.appendChild(container);
-
-        // create inner container
-        for (let i = 0; i < num; ++i) {
-            const innerContainer = document.createElement('div')
-            innerContainer.classList.add('inner-container');
-            container.appendChild(innerContainer);
-            
-            // create spans
-            for (let i = 0; i < num; ++i) {
-                const span = document.createElement('span');
-                span.classList.add('span');
-                span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
-                // span.textContent = 1;
-                innerContainer.appendChild(span);
-            }
+        function runSpanListener(sizeForumla) {
+            const spans =  document.querySelectorAll('span');
+            spans.forEach(span => {
+                span.addEventListener('mouseover', () => {
+                    console.log(span.style);
+                    span.style = `background-color:black;height:${sizeForumla}px; width:${sizeForumla}px`;
+                })
+            })
         }
 
-        const spans =  document.querySelectorAll('span');
-        spans.forEach(span => {
-            span.addEventListener('mouseover', () => {
-                console.log(span.style);
-                span.style = `background-color:black;height:${sizeForumla}px; width:${sizeForumla}px`;
-            })
-        })
+        function drawGrid(num) {
+            let sizeForumla = 500/num;
 
+            // create container
+            const container = document.createElement("div")
+            container.classList.add('container');
+            body.appendChild(container);
+
+            // create inner container
+            for (let i = 0; i < num; ++i) {
+                const innerContainer = document.createElement('div')
+                innerContainer.classList.add('inner-container');
+                container.appendChild(innerContainer);
+                
+                // create spans
+                for (let i = 0; i < num; ++i) {
+                    const span = document.createElement('span');
+                    span.style = `height:${sizeForumla}px; width:${sizeForumla}px`
+                    innerContainer.appendChild(span);
+                }
+            }
+            runSpanListener(sizeForumla);
+        }
+        
+
+        const button = document.querySelector('button')
+        button.addEventListener('click', () => {
+            size = prompt("Enter amount of squares per side.");
+            while (isNaN(size)) {
+                size = prompt("Bad input. Enter amount of squares per side.");
+            }
+            if (size !== null) {
+                if (size > 100) {
+                    size = 100;
+                }
+                console.log(size);
+                
+                if (document.querySelector('.container'))
+                    body.removeChild(document.querySelector('.container'));
+                drawGrid(size);
+            }
+        })
 
     </script>
 </body>
