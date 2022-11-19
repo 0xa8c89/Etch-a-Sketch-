@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: aqua;
+            margin-top: 5em;
+        }
+        div, span {
+            padding: .5em 1em;
+            text-align: center;
+        }
+        span {
+            /* border: 1px solid black; */
+            
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const body = document.querySelector("body");
+
+        for (let i = 0; i < 16; ++i) {
+            const div = document.createElement("div");
+            body.appendChild(div);
+            for (let i = 0; i < 16; ++i) {
+                const span = document.createElement("span");
+                div.appendChild(span);
+            }
+        }
+
+        function getRandomRGB() {
+            return Math.floor(Math.random() * 255 + 1);
+        }
+
+        const spans = document.querySelectorAll("span");
+        spans.forEach(span => {
+            const randomColor = `rgb(${getRandomRGB()},${getRandomRGB()},${getRandomRGB()})`;
+            span.addEventListener('mouseover', () => {
+                span.style = `background-color:${randomColor}`;
+            });
+        });
+    </script>
+</body>
+</html>
