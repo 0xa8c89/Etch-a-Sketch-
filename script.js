@@ -11,7 +11,6 @@ function runSpanListener() {
         span.addEventListener('mouseover', () => {
             console.log(span.style);
             span.style.backgroundColor = `rgb(${getRandomRGB()})`;
-            console.log(span.style)
         })
     })
 }
