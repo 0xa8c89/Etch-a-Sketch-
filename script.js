@@ -21,7 +21,7 @@ function runSpanListener() {
                 newRGB[i] = parseInt(newRGB[i]);
                 newRGB[i] -= newRGB[i]/10;
                 newRgbString += Math.floor(newRGB[i]);
-                if (!(i == 2))
+                if (i !== 2)
                     newRgbString += ',';
             }
             newRgbString += ')';
