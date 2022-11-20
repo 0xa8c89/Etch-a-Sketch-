@@ -1,5 +1,4 @@
 const body = document.querySelector('body');
-drawGrid(16);
 
 function getRandomRGB() {
     return `${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}, ${Math.floor(Math.random() * 255 + 1)}`;
@@ -55,7 +54,8 @@ function drawGrid(num) {
     }
     runSpanListener();
 }
-        
+
+drawGrid(16);
 
 const button = document.querySelector('button')
 button.addEventListener('click', () => {
