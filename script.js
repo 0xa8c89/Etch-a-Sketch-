@@ -50,6 +50,7 @@ function drawGrid(num) {
             const span = document.createElement('span');
             span.style.height = `${sizeForumla}px`;
             span.style.width = `${sizeForumla}px`;
+            span.style.backgroundColor = "white";
             innerContainer.appendChild(span);
         }
     }
